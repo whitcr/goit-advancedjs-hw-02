@@ -32,7 +32,8 @@ flatpickr('#datetime-picker', options);
 startButton.addEventListener('click', startTimer);
 
 function updateTimer(endDate) {
-  const timeDifference = endDate - timeNow;
+  const timeCurrent = new Date();
+  const timeDifference = endDate - timeCurrent;
 
   if (timeDifference <= 0) {
     clearInterval(timerInterval);

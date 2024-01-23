@@ -26,18 +26,22 @@ function onSubmit(event) {
   const step = Number(form.elements['step'].value);
   const amount = Number(form.elements['amount'].value);
 
+  form.elements['delay'].value = '';
+  form.elements['step'].value = '';
+  form.elements['amount'].value = '';
+
   for (let i = 1; i <= amount; i++) {
     const currentDelay = firstDelay + (i - 1) * step;
 
     createPromise(i, currentDelay)
       .then(({ position, delay }) => {
-        iziToast.show({
+        iziToast.success({
           title: 'Fulfilled',
           message: `✅ Fulfilled promise ${position} in ${delay}ms`,
         });
       })
       .catch(({ position, delay }) => {
-        iziToast.show({
+        iziToast.error({
           title: 'Rejected',
           message: `❌ Rejected promise ${position} in ${delay}ms`,
         });
